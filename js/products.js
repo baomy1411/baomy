@@ -1,0 +1,400 @@
+"use strict";
+
+/*
+ * =========================================================
+ * BẢO MY — PRODUCT DATA
+ * =========================================================
+ */
+
+const FOUNDED = "2016-11-14";
+
+const FREESHIP_FROM = 1000000;
+const SHIP_FEE = 30000;
+
+
+/* =========================================================
+   COUPONS
+   ========================================================= */
+
+const COUPONS = {
+
+  BAOMY10: {
+    type: "pct",
+    v: 10,
+    label: "Giảm 10%"
+  },
+
+  FREESHIP: {
+    type: "ship",
+    v: 0,
+    label: "Miễn phí vận chuyển"
+  }
+
+};
+
+
+/* =========================================================
+   OPTIONS
+   ========================================================= */
+
+const CLOTH = [
+  "S",
+  "M",
+  "L",
+  "XL"
+];
+
+const SCENT = [
+  "30ml",
+  "50ml",
+  "100ml"
+];
+
+
+/* =========================================================
+   BANK
+   ========================================================= */
+
+const BANK = {
+
+  qr: "./assets/Qr.png",
+
+  bank: "Viettinbank",
+
+  account: "109868925251",
+
+  owner: "Hà Thiên Bảo"
+
+};
+
+
+/* =========================================================
+   PRODUCTS
+   ========================================================= */
+
+const PRODUCTS = [
+
+  {
+    id: 1,
+
+    name: "Áo dài truyền thống",
+
+    cat: "women",
+
+    sub: "Áo dài",
+
+    price: 890000,
+
+    old: 1090000,
+
+    color: "#B4506F",
+
+    bg: "#F6E4E8",
+
+    sizes: CLOTH,
+
+    rate: 4.8,
+
+    desc:
+      "Áo dài truyền thống phù hợp vào các dịp lễ Tết và chụp kỉ yếu.",
+
+    image: "./assets/zk.png"
+  },
+
+
+  {
+    id: 2,
+
+    name: "Đầm đỏ nơ",
+
+    cat: "women",
+
+    sub: "Áo",
+
+    price: 490000,
+
+    color: "#E9DCCB",
+
+    bg: "#F4ECE2",
+
+    sizes: CLOTH,
+
+    rate: 4.6,
+
+    desc:
+      "Nguyên set đầm đỏ nơ diện đẹp ngày Xuân.",
+
+    image: "./assets/zk1.png"
+  },
+
+
+  {
+    id: 3,
+
+    name: "Quần tây trắng áo khoác xanh",
+
+    cat: "women",
+
+    sub: "Quần",
+
+    price: 620000,
+
+    color: "#4A1D34",
+
+    bg: "#EBDDE3",
+
+    sizes: CLOTH,
+
+    rate: 4.7,
+
+    desc:
+      "Set đồ du lịch ngày nắng.",
+
+    image: "./assets/zk2.png"
+  },
+
+
+  {
+    id: 4,
+
+    name: "Đầm dài hồng cánh sen",
+
+    cat: "women",
+
+    sub: "Áo khoác",
+
+    price: 1450000,
+
+    old: 1750000,
+
+    color: "#7A5C58",
+
+    bg: "#EFE6E3",
+
+    sizes: CLOTH,
+
+    rate: 4.9,
+
+    desc:
+      "Đầm sang dành cho những ngày vi vu Vũng Tàu.",
+
+    image: "./assets/zk3.png"
+  },
+
+
+  {
+    id: 5,
+
+    name: "Đầm Dạ Hội Trung Thu",
+
+    cat: "women",
+
+    sub: "Đầm",
+
+    price: 1690000,
+
+    color: "#8E2547",
+
+    bg: "#F3DDE3",
+
+    sizes: CLOTH,
+
+    rate: 4.8,
+
+    desc:
+      "Đầm ôm nhẹ nhàng tinh tế soi rọi dưới ánh trăng Trung Thu.",
+
+    image: "./assets/zk4.png"
+  },
+
+
+  {
+    id: 6,
+
+    name: "Đầm đen ánh nhung",
+
+    cat: "women",
+
+    sub: "Chân váy",
+
+    price: 450000,
+
+    color: "#C9A45C",
+
+    bg: "#F5EBD6",
+
+    sizes: CLOTH,
+
+    rate: 4.5,
+
+    desc:
+      "Set đầm đen óng ánh kỷ niệm sinh nhật.",
+
+    image: "./assets/zk5.png"
+  },
+
+
+  {
+    id: 7,
+
+    name: "Đầm HongKong Du Xuân",
+
+    cat: "women",
+
+    sub: "Áo",
+
+    price: 390000,
+
+    color: "#A37B73",
+
+    bg: "#F1E6E2",
+
+    sizes: CLOTH,
+
+    rate: 4.4,
+
+    desc:
+      "Set đầm thích hợp cho những ai muốn thay đổi phong cách ngày Xuân.",
+
+    image: "./assets/zk6.png"
+  },
+
+
+  {
+    id: 8,
+
+    name: "Combo áo thun quần jean",
+
+    cat: "women",
+
+    sub: "Set",
+
+    price: 760000,
+
+    old: 890000,
+
+    color: "#9DB09A",
+
+    bg: "#E8EEE6",
+
+    sizes: CLOTH,
+
+    rate: 4.7,
+
+    desc:
+      "Set quần áo phù hợp những ngày lễ chùa.",
+
+    image: "./assets/zk7.png"
+  },
+
+
+  {
+    id: 9,
+
+    name: "Blue Chanel",
+
+    cat: "perfume",
+
+    sub: "Hoa hồng · Phấn",
+
+    price: 1250000,
+
+    color: "#C97A94",
+
+    bg: "#F7E6EB",
+
+    sizes: SCENT,
+
+    rate: 4.9,
+
+    desc:
+      "Hoa hồng Bulgaria, hạt tiêu hồng và xạ hương trắng. Nữ tính, ấm và lưu hương lâu.",
+
+    image:
+      "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=600&auto=format&fit=crop&q=80"
+  },
+
+
+  {
+    id: 10,
+
+    name: "Gioia",
+
+    cat: "perfume",
+
+    sub: "Hổ phách · Vani",
+
+    price: 1480000,
+
+    color: "#B08D4F",
+
+    bg: "#F3EAD8",
+
+    sizes: SCENT,
+
+    rate: 4.8,
+
+    desc:
+      "Hổ phách, vani và gỗ đàn hương. Hương tối, ấm, hợp buổi tối và mùa lạnh.",
+
+    image:
+      "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=600&auto=format&fit=crop&q=80"
+  },
+
+
+  {
+    id: 11,
+
+    name: "VERSACE",
+
+    cat: "perfume",
+
+    sub: "Hoa trắng",
+
+    price: 1190000,
+
+    old: 1390000,
+
+    color: "#C9B8CF",
+
+    bg: "#F1ECF3",
+
+    sizes: SCENT,
+
+    rate: 4.6,
+
+    desc:
+      "Hoa nhài, huệ trắng và lê xanh. Sạch, nhẹ, dễ dùng hằng ngày.",
+
+    image:
+      "https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=735&auto=format&fit=crop&q=80"
+  },
+
+
+  {
+    id: 12,
+
+    name: "CoCo Chanel",
+
+    cat: "perfume",
+
+    sub: "Gỗ · Da thuộc",
+
+    price: 1650000,
+
+    color: "#6B4A33",
+
+    bg: "#EDE3DA",
+
+    sizes: SCENT,
+
+    rate: 4.7,
+
+    desc:
+      "Gỗ tuyết tùng, da thuộc và một chút cam bergamot. Cá tính, dùng được cho mọi giới.",
+
+    image:
+      "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&auto=format&fit=crop&q=80"
+  }
+
+];

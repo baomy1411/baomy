@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 72" role="img" aria-label="Bảo My">
+  <circle cx="36" cy="36" r="32" fill="#4A1D34"/>
+  <circle cx="36" cy="36" r="27" fill="none" stroke="#C9A45C" stroke-width="1.2"/>
+  <path d="M20 49V23l9 14 7-14 7 14 9-14v26" fill="none" stroke="#F5E6D0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="36" cy="55" r="1.8" fill="#C9A45C"/>
+  <text x="80" y="40" font-family="Cormorant Garamond, Georgia, serif" font-size="34" font-weight="700" fill="#4A1D34" letter-spacing="2">Bảo My</text>
+  <text x="81" y="58" font-family="Be Vietnam Pro, Arial, sans-serif" font-size="10" fill="#9A7A3E" letter-spacing="2.4">THÀNH LẬP 14.11.2016</text>
+</svg>
