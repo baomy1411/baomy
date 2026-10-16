@@ -2617,6 +2617,13 @@ function renderAccount() {
   }
 
 
+  const headerAuth = document.getElementById("headerAuth");
+  if (headerAuth) {
+    headerAuth.innerHTML = me
+      ? `<span class="header-welcome">Xin chào, ${String(me.name || "bạn").replace(/[&<>"']/g, "")}</span><button class="header-auth-link" type="button" data-auth="logout">Đăng xuất</button>`
+      : `<button class="header-auth-link" type="button" data-auth="login">Đăng nhập</button><button class="header-auth-register" type="button" data-auth="register">Đăng ký</button>`;
+  }
+
   if (me) {
 
     text.textContent =
@@ -2953,272 +2960,38 @@ function authModal(
    SUBMIT AUTH
    ========================================================= */
 
-async function submitAuth(
-  form,
-  dialog,
-  register
-) {
-
-  const data =
-    new FormData(form);
-
-
-  const error =
-    $("#authError", dialog);
-
-
-  const key =
-    String(
-      data.get("e") || ""
-    )
-      .trim()
-      .toLowerCase();
-
-
+async function submitAuth(form, dialog, register) {
+  const data = new FormData(form);
+  const error = $('#authError', dialog);
+  const key = String(data.get('e') || '').trim().toLowerCase();
+  const password = String(data.get('w') || '');
+  const name = String(data.get('n') || '').trim();
+  const phone = String(data.get('p') || '').replace(/\s/g, '');
   if (register) {
-
-    const name =
-      String(
-        data.get("n") || ""
-      ).trim();
-
-
-    const phone =
-      String(
-        data.get("p") || ""
-      )
-        .replace(
-          /\s/g,
-          ""
-        );
-
-
-    const password =
-      String(
-        data.get("w") || ""
-      );
-
-
-    const password2 =
-      String(
-        data.get("w2") || ""
-      );
-
-
-    if (!name) {
-
-      error.textContent =
-        "Vui lòng nhập họ và tên.";
-
-      return;
-
-    }
-
-
-    if (
-      !/^[^@\s]+@[^@\s]+\.[^@\s]+$/
-        .test(key)
-    ) {
-
-      error.textContent =
-        "Email chưa đúng, ví dụ ten@gmail.com.";
-
-      return;
-
-    }
-
-
-    if (!validPhone(phone)) {
-
-      error.textContent =
-        "Số điện thoại chưa đúng, ví dụ 0900000000.";
-
-      return;
-
-    }
-
-
-    if (
-      password.length < 6
-    ) {
-
-      error.textContent =
-        "Mật khẩu cần ít nhất 6 ký tự.";
-
-      return;
-
-    }
-
-
-    if (
-      password !== password2
-    ) {
-
-      error.textContent =
-        "Hai mật khẩu chưa giống nhau.";
-
-      return;
-
-    }
-
-
-    const existing =
-      users().some(
-        user =>
-          user.email === key ||
-          user.phone === phone
-      );
-
-
-    if (existing) {
-
-      error.textContent =
-        "Email hoặc số điện thoại này đã có tài khoản. Hãy đăng nhập.";
-
-      return;
-
-    }
-
-
-    const passwordHash =
-      await hash(password);
-
-
-    const user = {
-
-      name,
-
-      email: key,
-
-      phone,
-
-      hash: passwordHash
-
-    };
-
-
-    store.set(
-      "bm_users",
-      [
-        ...users(),
-        user
-      ]
-    );
-
-
-    me = {
-
-      name,
-
-      email: key
-
-    };
-
-
-    store.set(
-      "bm_me",
-      me
-    );
-
-
+    if (name.length < 2) { error.textContent = 'Vui lòng nhập họ và tên.'; return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(key)) { error.textContent = 'Email chưa đúng, ví dụ ten@gmail.com.'; return; }
+    if (!validPhone(phone)) { error.textContent = 'Số điện thoại chưa đúng.'; return; }
+    if (password.length < 8) { error.textContent = 'Mật khẩu cần ít nhất 8 ký tự.'; return; }
+    if (password !== String(data.get('w2') || '')) { error.textContent = 'Hai mật khẩu chưa giống nhau.'; return; }
+  } else if (!key || !password) { error.textContent = 'Vui lòng nhập đủ thông tin.'; return; }
+  const submit = $('button[type="submit"]', form);
+  if (submit) { submit.disabled = true; submit.textContent = 'Đang xử lý…'; }
+  try {
+    const response = await fetch(register ? '/api/auth/register' : '/api/auth/login', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(register ? {name,email:key,phone,password} : {email:key,password})
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.error || 'Không thể xử lý tài khoản.');
+    const user = result.user;
+    me = {id:user.id,name:user.name,email:user.email,phone:user.phone};
+    store.set('bm_me', me);
     renderAccount();
-
-
     dialog.close();
-
-
-    toast(
-      "Đăng ký thành công. Chào mừng " +
-      name +
-      "!"
-    );
-
-
-    return;
-
-  }
-
-
-  const password =
-    String(
-      data.get("w") || ""
-    );
-
-
-  if (
-    !key ||
-    !password
-  ) {
-
-    error.textContent =
-      "Vui lòng nhập đủ thông tin.";
-
-    return;
-
-  }
-
-
-  const passwordHash =
-    await hash(password);
-
-
-  const normalizedPhone =
-    key.replace(
-      /\s/g,
-      ""
-    );
-
-
-  const user =
-    users().find(
-      item =>
-        (
-          item.email === key ||
-          item.phone === normalizedPhone
-        ) &&
-        item.hash === passwordHash
-    );
-
-
-  if (!user) {
-
-    error.textContent =
-      "Sai thông tin đăng nhập. Hãy kiểm tra lại.";
-
-    return;
-
-  }
-
-
-  me = {
-
-    name: user.name,
-
-    email: user.email
-
-  };
-
-
-  store.set(
-    "bm_me",
-    me
-  );
-
-
-  renderAccount();
-
-
-  dialog.close();
-
-
-  toast(
-    "Xin chào, " +
-    user.name +
-    "!"
-  );
-
+    toast(register ? `Đăng ký thành công. Chào mừng ${user.name}!` : `Xin chào, ${user.name}!`);
+  } catch (e) { error.textContent = e.message || 'Lỗi kết nối. Vui lòng thử lại.'; }
+  finally { if (submit) { submit.disabled = false; submit.textContent = register ? 'Tạo tài khoản' : 'Đăng nhập'; } }
 }
-
 
 /* =========================================================
    GLOBAL CLICK
