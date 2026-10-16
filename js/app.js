@@ -2604,25 +2604,16 @@ async function hash(
 
 function renderAccount() {
 
-  const box =
-    $("#acc");
-
-
-  const text =
-    $("#accText");
-
-
-  if (!box || !text) {
-    return;
-  }
-
-
   const headerAuth = document.getElementById("headerAuth");
   if (headerAuth) {
     headerAuth.innerHTML = me
       ? `<span class="header-welcome">Xin chào, ${String(me.name || "bạn").replace(/[&<>"']/g, "")}</span><button class="header-auth-link" type="button" data-auth="logout">Đăng xuất</button>`
       : `<button class="header-auth-link" type="button" data-auth="login">Đăng nhập</button><button class="header-auth-register" type="button" data-auth="register">Đăng ký</button>`;
   }
+
+  const box = $("#acc");
+  const text = $("#accText");
+  if (!box || !text) return;
 
   if (me) {
 

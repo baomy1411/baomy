@@ -347,20 +347,12 @@
 
         </div>
 
-        <div class="about-box">
-
-          <div class="about-logo">
-            BM
-          </div>
-
-          <span>
-            BAO MY
-          </span>
-
-          <small>
-            ONLINE SHOP · CUSTOMER CARE
-          </small>
-
+        <div class="about-box about-video">
+          <video controls playsinline preload="metadata" poster="./assets/zk.png" aria-label="Video giới thiệu Bảo My">
+            <source src="./assets/baomy-video.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ phát video.
+          </video>
+          <div class="video-caption"><span class="eyebrow">BẢO MY · OUR STORY</span><strong>Một chút cảm hứng, thật nhiều yêu thương.</strong><small>Thêm video của shop vào <code>assets/baomy-video.mp4</code> để hiển thị tại đây.</small></div>
         </div>
 
       </div>
@@ -384,57 +376,6 @@
       <div class="container contact-box"><div><span class="eyebrow">BẢO MY CARE</span><h2>Cần hỗ trợ? <em>Hãy liên hệ.</em></h2><p>Vui lòng dùng thông tin liên hệ chính thức của shop để được tư vấn về sản phẩm, đơn hàng, giao hàng và đổi trả.</p></div><div class="contact-actions"><a class="btn solid" href="mailto:baomyshop@example.com" id="contactEmail">Gửi email cho shop</a><a class="btn" href="#shop">Tiếp tục mua sắm</a><small>Chủ shop: hãy thay email mẫu bằng địa chỉ hỗ trợ thật trước khi quảng bá website.</small></div></div>
     </section>
 
-    <!-- ================= ACCOUNT ================= -->
-
-    <section class="account section">
-
-      <div class="container account-box">
-
-        <div>
-
-          <span class="eyebrow">
-            MEMBER
-          </span>
-
-          <h2>
-            Thành viên
-            <em>Bảo My</em>
-          </h2>
-
-          <p id="accText">
-            Đăng ký để lưu thông tin và nhận
-            mã giảm giá, hoặc đăng nhập nếu bạn
-            đã có tài khoản.
-          </p>
-
-        </div>
-
-        <div
-          class="account-actions"
-          id="acc"
-        >
-
-          <button
-            class="btn"
-            type="button"
-            data-auth="login"
-          >
-            Đăng nhập
-          </button>
-
-          <button
-            class="btn solid"
-            type="button"
-            data-auth="register"
-          >
-            Đăng ký
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
 
   </main>
 
@@ -475,6 +416,7 @@
 
         <a href="#about">Về Bảo My</a>
         <a href="#contact">Chính sách & hỗ trợ</a>
+        <a href="/admin" class="admin-entry">Đăng nhập quản trị viên</a>
 
         <button
           type="button"
