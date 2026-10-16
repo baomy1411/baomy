@@ -544,6 +544,8 @@ function getProducts() {
     PRODUCTS.filter(
       product => {
 
+        if (product.active === false) return false;
+
         const matchesCategory =
           view.cat === "all" ||
           product.cat === view.cat;
@@ -2139,7 +2141,7 @@ function validPhone(phone) {
    SUBMIT CHECKOUT
    ========================================================= */
 
-function submitCheckout(
+async function submitCheckout(
   form,
   dialog,
   total,
@@ -2206,82 +2208,38 @@ function submitCheckout(
   }
 
 
-  const order = {
-
-    code,
-
-    name,
-
-    phone,
-
-    address,
-
-    method,
-
-    total: total.total,
-
-    items:
-      cart.map(item => ({
-
-        id: item.id,
-
-        size: item.size,
-
-        qty: item.qty
-
-      })),
-
-    createdAt:
-      new Date().toISOString()
-
-  };
-
-
-  const orders =
-    store.get(
-      "bm_orders",
-      []
-    );
-
-
-  store.set(
-    "bm_orders",
-    [
-      ...orders,
-      order
-    ]
-  );
-
-
-  cart = [];
-
-  coupon = null;
-
-
-  save();
-
-  renderCart();
-
-
-  dialog.close();
-
-
-  if (method === "bank") {
-
-    openQr(
-      total,
-      code,
-      name
-    );
-
-  } else {
-
-    showOrderSuccess(
-      code,
-      name,
-      total.total
-    );
-
+  const submitButton = $("button[type=submit]", form);
+  if (submitButton?.disabled) return;
+  if (submitButton) { submitButton.disabled = true; submitButton.textContent = "Đang gửi đơn..."; }
+  error.textContent = "";
+  try {
+    const response = await fetch("/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name, phone, address, method,
+        coupon: coupon || null,
+        items: cart.map(item => ({ id: item.id, size: item.size, qty: item.qty }))
+      })
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.error || "Không thể gửi đơn hàng.");
+    const savedOrder = result.order;
+    cart = [];
+    coupon = null;
+    save();
+    renderCart();
+    dialog.close();
+    const confirmedTotal = Number(savedOrder.total);
+    if (method === "bank") {
+      openQr({ ...total, total: confirmedTotal }, savedOrder.code, name);
+    } else {
+      showOrderSuccess(savedOrder.code, name, confirmedTotal);
+    }
+  } catch (e) {
+    error.textContent = e.message || "Không thể kết nối máy chủ. Vui lòng thử lại.";
+  } finally {
+    if (submitButton?.isConnected) { submitButton.disabled = false; submitButton.textContent = "Đặt hàng"; }
   }
 
 }
@@ -3807,14 +3765,25 @@ if ($("#yr")) {
    INITIALIZE
    ========================================================= */
 
-function init() {
-
+async function init() {
+  try {
+    const response = await fetch("/api/products");
+    if (response.ok) {
+      const liveProducts = await response.json();
+      for (const live of liveProducts) {
+        const local = byId(live.id);
+        if (local) Object.assign(local, { price: Number(live.price), stock: Number(live.stock), active: Boolean(live.active) });
+      }
+      for (const local of PRODUCTS) {
+        if (!liveProducts.some(p => p.id === local.id)) local.active = false;
+      }
+    }
+  } catch (error) {
+    console.warn("Không thể đồng bộ danh mục từ máy chủ:", error);
+  }
   renderGrid();
-
   renderCart();
-
   renderAccount();
-
 }
 
 
