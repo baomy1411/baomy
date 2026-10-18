@@ -290,7 +290,6 @@ function toast(message) {
  *
  * Không dùng:
  *
- *   this.src = "assets/logo.svg"
  *
  * nữa.
  *
@@ -548,7 +547,9 @@ function getProducts() {
 
         const matchesCategory =
           view.cat === "all" ||
-          product.cat === view.cat;
+          product.cat === view.cat ||
+          product.subCat === view.cat ||
+          product.category === view.cat;
 
 
         const searchText = [

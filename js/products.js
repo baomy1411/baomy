@@ -98,7 +98,7 @@ const PRODUCTS = [
     desc:
       "Áo dài truyền thống phù hợp vào các dịp lễ Tết và chụp kỉ yếu.",
 
-    image: "./assets/zk.png"
+    image: "./assets/zk.webp"
   },
 
 
@@ -124,7 +124,7 @@ const PRODUCTS = [
     desc:
       "Nguyên set đầm đỏ nơ diện đẹp ngày Xuân.",
 
-    image: "./assets/zk1.png"
+    image: "./assets/zk1.webp"
   },
 
 
@@ -150,7 +150,7 @@ const PRODUCTS = [
     desc:
       "Set đồ du lịch ngày nắng.",
 
-    image: "./assets/zk2.png"
+    image: "./assets/zk2.webp"
   },
 
 
@@ -178,7 +178,7 @@ const PRODUCTS = [
     desc:
       "Đầm sang dành cho những ngày vi vu Vũng Tàu.",
 
-    image: "./assets/zk3.png"
+    image: "./assets/zk3.webp"
   },
 
 
@@ -204,7 +204,7 @@ const PRODUCTS = [
     desc:
       "Đầm ôm nhẹ nhàng tinh tế soi rọi dưới ánh trăng Trung Thu.",
 
-    image: "./assets/zk4.png"
+    image: "./assets/zk4.webp"
   },
 
 
@@ -230,7 +230,7 @@ const PRODUCTS = [
     desc:
       "Set đầm đen óng ánh kỷ niệm sinh nhật.",
 
-    image: "./assets/zk5.png"
+    image: "./assets/zk5.webp"
   },
 
 
@@ -256,7 +256,7 @@ const PRODUCTS = [
     desc:
       "Set đầm thích hợp cho những ai muốn thay đổi phong cách ngày Xuân.",
 
-    image: "./assets/zk6.png"
+    image: "./assets/zk6.webp"
   },
 
 
@@ -284,7 +284,7 @@ const PRODUCTS = [
     desc:
       "Set quần áo phù hợp những ngày lễ chùa.",
 
-    image: "./assets/zk7.png"
+    image: "./assets/zk7.webp"
   },
 
 

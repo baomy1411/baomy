@@ -16,7 +16,7 @@
     ],
     "rate": 4.8,
     "desc": "Áo dài truyền thống phù hợp vào các dịp lễ Tết và chụp kỉ yếu.",
-    "image": "./assets/zk.png"
+    "image": "./assets/zk.webp"
   },
   {
     "id": 2,
@@ -34,7 +34,7 @@
     ],
     "rate": 4.6,
     "desc": "Nguyên set đầm đỏ nơ diện đẹp ngày Xuân.",
-    "image": "./assets/zk1.png"
+    "image": "./assets/zk1.webp"
   },
   {
     "id": 3,
@@ -52,7 +52,7 @@
     ],
     "rate": 4.7,
     "desc": "Set đồ du lịch ngày nắng.",
-    "image": "./assets/zk2.png"
+    "image": "./assets/zk2.webp"
   },
   {
     "id": 4,
@@ -71,7 +71,7 @@
     ],
     "rate": 4.9,
     "desc": "Đầm sang dành cho những ngày vi vu Vũng Tàu.",
-    "image": "./assets/zk3.png"
+    "image": "./assets/zk3.webp"
   },
   {
     "id": 5,
@@ -89,7 +89,7 @@
     ],
     "rate": 4.8,
     "desc": "Đầm ôm nhẹ nhàng tinh tế soi rọi dưới ánh trăng Trung Thu.",
-    "image": "./assets/zk4.png"
+    "image": "./assets/zk4.webp"
   },
   {
     "id": 6,
@@ -107,7 +107,7 @@
     ],
     "rate": 4.5,
     "desc": "Set đầm đen óng ánh kỷ niệm sinh nhật.",
-    "image": "./assets/zk5.png"
+    "image": "./assets/zk5.webp"
   },
   {
     "id": 7,
@@ -125,7 +125,7 @@
     ],
     "rate": 4.4,
     "desc": "Set đầm thích hợp cho những ai muốn thay đổi phong cách ngày Xuân.",
-    "image": "./assets/zk6.png"
+    "image": "./assets/zk6.webp"
   },
   {
     "id": 8,
@@ -144,7 +144,7 @@
     ],
     "rate": 4.7,
     "desc": "Set quần áo phù hợp những ngày lễ chùa.",
-    "image": "./assets/zk7.png"
+    "image": "./assets/zk7.webp"
   },
   {
     "id": 9,

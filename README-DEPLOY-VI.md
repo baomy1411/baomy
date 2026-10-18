@@ -36,3 +36,13 @@
 - Mã giảm giá hiện có `BAOMY10` và `FREESHIP`; backend tự tính lại giảm giá và phí giao hàng. Không tin số tiền do trình duyệt gửi lên.
 - Dự án này không lưu thông tin thẻ ngân hàng. Không nhập thông tin bí mật vào source code.
 - Trước khi mở bán: kiểm tra log Render, kiểm thử trên điện thoại, xác nhận giá/tồn kho, kiểm thử đơn hàng, chính sách và thông tin liên hệ.
+
+## Cập nhật giao diện responsive, slider và liên hệ
+
+- Slider hero có 5 ảnh trong `index.html`, nằm phía sau phần `.hero-copy`. Thay đường dẫn `data-image` của các phần tử `.hero-slide` bằng ảnh của shop. Có thể thêm slide mới và thêm nút `data-slide-to` tương ứng.
+- Ảnh sản phẩm đã được tối ưu sang định dạng WebP trong `assets/zk.webp` đến `assets/zk7.webp`. Khi thay ảnh, hãy giữ đúng tên/đường dẫn hoặc cập nhật cả `js/products.js`, `data/products.json` và `index.html`.
+- Video giới thiệu đang lấy từ `assets/video.mp4`; có thể thay file này bằng video mới và giữ nguyên tên.
+- Danh mục mở rộng trong `#chips` gồm Son phấn, Giày thể thao, Chăm sóc da, Túi xách và Phụ kiện. Khi thêm sản phẩm mới, dùng các mã `makeup`, `sneakers`, `skincare`, `bags`, `accessories` trong trường `cat` (hoặc `category`/`subCat`) của sản phẩm.
+- Bản đồ đang hiển thị khu vực Rừng Sác, Cần Giờ, TP. Hồ Chí Minh; đây là khu vực tham chiếu, không phải địa chỉ số nhà đã xác minh.
+- Trước khi đưa website lên công khai, hãy thay các giá trị mẫu trong phần `#contact` ở `index.html`: số điện thoại, đường dẫn Zalo, trang Facebook và email thật của shop.
+- Gói mã nguồn triển khai không kèm `.git` hoặc `node_modules`; chạy `npm install`/`npm ci` tại môi trường triển khai để cài các dependency theo `package-lock.json`.
